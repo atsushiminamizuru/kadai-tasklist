@@ -2,7 +2,7 @@
     <nav class="navbar bg-neutral text-neutral-content">
         {{-- トップページへのリンク --}}
         <div class="flex-1">
-            <h1><a class="btn btn-ghost normal-case text-xl" href="/">Tasklist</a></h1>
+            <h1><a class="btn btn-ghost normal-case text-xl" href="{{ route('tasks.index') }}">Tasklist</a></h1>
         </div>
 
         <div class="flex-none">
@@ -25,11 +25,9 @@
                     <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-info">
                         @include('commons.link_items')
                     </ul>
-                    <ul tabindex="0" class="menu lg:block lg:menu-horizontal">
-                        <li><a class="link link-hover" href="{{ route('tasks.create') }}">タスクの投稿</a></li>
-                    </ul>
                 </div>
             </form>
         </div>
     </nav>
 </header>
+
