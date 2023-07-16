@@ -41,11 +41,8 @@ class TasksController extends Controller
             'status' => 'required|max:10',
             'content' => 'required',
         ]);
-        
-        $request->user()->tasks()->create([
-            'content' => $request->content,
-            'status' => $request->status,
-        ]);
+
+        $request->user()->tasks()->create($request->all());
         
         return redirect('/');
     }
@@ -84,10 +81,7 @@ class TasksController extends Controller
         
         $task = Task::findOrFail($id);
         if (\Auth::id() === $task->user_id) {
-            $task->status = $request->status;
-            $task->content = $request->content;
-            $task->user_id = $request->user()->id; // リレーションの一方のエンドの外部キーを設定
-            $task->save();
+            $task->update($request->all());
         }
         
         return view('tasks.show', [
